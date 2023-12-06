@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication1.Controllers;
 
@@ -11,9 +12,11 @@ using WebApplication1.Controllers;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(appDbcontext1))]
-    partial class appDbcontext1ModelSnapshot : ModelSnapshot
+    [Migration("20231206220020_post111")]
+    partial class post111
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,6 +24,35 @@ namespace WebApplication1.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("Comment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CommentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("postid")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("postid");
+
+                    b.ToTable("Comment");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
@@ -224,6 +256,15 @@ namespace WebApplication1.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int?>("postId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("postId1")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("postId2")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedEmail")
@@ -233,6 +274,12 @@ namespace WebApplication1.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex")
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.HasIndex("postId");
+
+                    b.HasIndex("postId1");
+
+                    b.HasIndex("postId2");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -268,6 +315,15 @@ namespace WebApplication1.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("posts");
+                });
+
+            modelBuilder.Entity("Comment", b =>
+                {
+                    b.HasOne("WebApplication1.models.post", null)
+                        .WithMany("Comments")
+                        .HasForeignKey("postid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -319,6 +375,32 @@ namespace WebApplication1.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("WebApplication1.models.applecationuser", b =>
+                {
+                    b.HasOne("WebApplication1.models.post", null)
+                        .WithMany("userShare")
+                        .HasForeignKey("postId");
+
+                    b.HasOne("WebApplication1.models.post", null)
+                        .WithMany("usermakedilike")
+                        .HasForeignKey("postId1");
+
+                    b.HasOne("WebApplication1.models.post", null)
+                        .WithMany("usermakelike")
+                        .HasForeignKey("postId2");
+                });
+
+            modelBuilder.Entity("WebApplication1.models.post", b =>
+                {
+                    b.Navigation("Comments");
+
+                    b.Navigation("userShare");
+
+                    b.Navigation("usermakedilike");
+
+                    b.Navigation("usermakelike");
                 });
 #pragma warning restore 612, 618
         }
