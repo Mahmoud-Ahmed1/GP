@@ -16,6 +16,7 @@ using WebApplication1;
 using WebApplication1.Repository;
 using WebApplication1.Repository.Services;
 using WebApplication1.models;
+using WebApplication1.Repository.Repository;
 
 namespace WebApplication
 {
@@ -31,6 +32,8 @@ namespace WebApplication
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<IpostRepository, postrepository>();
+            services.AddScoped<ImangeprofileRepository, mangeprofilerepository>();
            
             services.AddScoped<IAuthService, AuthService>();
 
