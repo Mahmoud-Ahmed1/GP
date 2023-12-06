@@ -5,7 +5,7 @@ using WebApplication1.models;
 
 namespace WebApplication1.Repository.Repository
 {
-    public class mangeprofilerepository : Repositoryg<applecationuser>, ImangeprofileRepository
+    public class mangeprofilerepository : Repositoryg<ApplicationUser>, ImangeprofileRepository
     {
         private readonly appDbcontext1 _db;
 
@@ -16,7 +16,7 @@ namespace WebApplication1.Repository.Repository
         }
 
 
-        public async Task<applecationuser> updatat(applecationuser entity)
+        public async Task<ApplicationUser> updatat(ApplicationUser entity)
         {   
             _db.Users.Update(entity);
             await _db.SaveChangesAsync();

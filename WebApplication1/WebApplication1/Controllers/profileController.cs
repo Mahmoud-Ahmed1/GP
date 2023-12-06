@@ -19,8 +19,8 @@ namespace WebApplication1.Controllers
 
         private readonly ImangeprofileRepository _repoemp;
         private readonly appDbcontext1 _db;
-        private readonly UserManager<WebApplication1.models.applecationuser> _userManager;
-        public profileController(appDbcontext1 db, UserManager<applecationuser> userManager, ImangeprofileRepository repoemp)
+        private readonly UserManager<WebApplication1.models.ApplicationUser> _userManager;
+        public profileController(appDbcontext1 db, UserManager<ApplicationUser> userManager, ImangeprofileRepository repoemp)
         {
             _userManager = userManager;
             _repoemp = repoemp;
@@ -31,7 +31,7 @@ namespace WebApplication1.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<applecationuser>> Get()
+        public async Task<ActionResult<ApplicationUser>> Get()
         {
             var X = await _repoemp.GetAll();
             // _logger.log("gte all employee   ", "error");
@@ -44,7 +44,7 @@ namespace WebApplication1.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<applecationuser>> Get(string id)
+        public async Task<ActionResult<ApplicationUser>> Get(string id)
 
         {
             if (id == null)
@@ -94,7 +94,7 @@ namespace WebApplication1.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<applecationuser>> update(string id, [FromBody] applecationuser applecationuser1)
+        public async Task<ActionResult<ApplicationUser>> update(string id, [FromBody] ApplicationUser applecationuser1)
         {
             var a = await _repoemp.Get(e => e.Id == id);
 
@@ -125,7 +125,7 @@ namespace WebApplication1.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<applecationuser>> updateprofile(string id, [FromBody] applecationuser applecationuser1)
+        public async Task<ActionResult<ApplicationUser>> updateprofile(string id, [FromBody] ApplicationUser applecationuser1)
         {
             var a = await _repoemp.Get(e => e.Id == id);
 
