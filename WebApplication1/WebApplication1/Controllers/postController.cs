@@ -18,7 +18,7 @@ namespace WebApplication1.Controllers
         {
             _repoemp = repoemp;
             _db = db;
-           
+
         }
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -79,12 +79,12 @@ namespace WebApplication1.Controllers
                 CreatedDate = post1.CreatedDate,
                 userid = post1.userid,
                 totalshare = 0,
-                totaldislike=0,
+                totaldislike = 0,
                 totallike = 0,
 
 
             };
-            
+
 
             await _db.posts.AddAsync(model);
             await _db.SaveChangesAsync();
@@ -147,9 +147,9 @@ namespace WebApplication1.Controllers
         {
             var a = await _repoemp.Get(e => e.Id == id);
 
-           
+
             a.totallike++;
-            
+
             await _repoemp.save();
             return NoContent();
 
@@ -219,16 +219,16 @@ namespace WebApplication1.Controllers
             a.totalshare++;
 
             await _repoemp.save();
-            return NoContent();
+            return NoContent(); 
 
         }
 
 
-       
 
 
-        
-        
+
+
+
 
     }
 }
