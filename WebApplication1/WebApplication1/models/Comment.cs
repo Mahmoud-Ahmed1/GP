@@ -1,11 +1,20 @@
-﻿
+﻿using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
+namespace WebApplication1.models
+{
     public class Comment
     {
+        [Key]
         public int Id { get; set; }
-        public string Text { get; set; }
-        public string UserId { get; set; }
-        public DateTime CommentDate { get; set; }
-        public int postid { get; set; } 
-    }
 
+        [ForeignKey("Post")]
+        public int PostId { get; set; }
+        public post Post { get; set; }
+        public string text { get; set; }
+        public string userid { get; set; }
+        public DateTime commentDate { get; set; }
+
+    }
+}
 

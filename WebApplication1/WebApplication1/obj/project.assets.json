@@ -13219,19 +13219,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\mahmo\\.nuget\\packages\\": {}
+    "C:\\Users\\Almodather\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\GitHub Projects\\GP\\GP\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+      "projectUniqueName": "C:\\Users\\Almodather\\Documents\\GitHub\\GP\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
       "projectName": "WebApplication1",
-      "projectPath": "D:\\GitHub Projects\\GP\\GP\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
-      "packagesPath": "C:\\Users\\mahmo\\.nuget\\packages\\",
-      "outputPath": "D:\\GitHub Projects\\GP\\GP\\WebApplication1\\WebApplication1\\obj\\",
+      "projectPath": "C:\\Users\\Almodather\\Documents\\GitHub\\GP\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+      "packagesPath": "C:\\Users\\Almodather\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Almodather\\Documents\\GitHub\\GP\\WebApplication1\\WebApplication1\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\mahmo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Almodather\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -13239,7 +13239,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://www.nuget.org/api/v2/": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net7.0": {
@@ -13341,16 +13341,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file D:\\GitHub Projects\\GP\\GP\\WebApplication1\\WebApplication1\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    }
-  ]
+  }
 }

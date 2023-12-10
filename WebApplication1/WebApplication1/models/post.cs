@@ -1,5 +1,7 @@
 ﻿
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using WebApplication1.Migrations;
 
 namespace WebApplication1.models
 {
@@ -12,6 +14,7 @@ namespace WebApplication1.models
 
         public long totallike { get; set; }
         public long totaldislike { get; set; }
+        public long totalcomment { get; set; }
         public long totalshare { get; set; }
         
        
@@ -19,4 +22,6 @@ namespace WebApplication1.models
 
 
     }
+
+   
 }

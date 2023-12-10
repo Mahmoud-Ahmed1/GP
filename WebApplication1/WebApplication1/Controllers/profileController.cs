@@ -99,9 +99,9 @@ namespace WebApplication1.Controllers
             var a = await _repoemp.Get(e => e.Id == id);
 
             if (applecationuser1 == null ) return BadRequest();
+
+
            
-
-
             a.fname = applecationuser1.fname;
             a.lname = applecationuser1.lname;
             a.UserName = applecationuser1.UserName;
@@ -138,9 +138,9 @@ namespace WebApplication1.Controllers
             return NoContent();
 
         }
-        
+         
 
-        [HttpPut("profile/{id}/changepassword")]
+    [HttpPut("profile/{id}/changepassword")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]

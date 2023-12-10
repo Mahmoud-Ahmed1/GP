@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using WebApplication1.Controllers;
 using WebApplication1.Controllers;
@@ -12,11 +13,11 @@ namespace WebApplication1.Repository
         private readonly appDbcontext1 _db;
         internal DbSet<T> dbset;
         private appDbcontext1 db;
-
-        public Repositoryg(appDbcontext1 db)
+ 
+        public Repositoryg(appDbcontext1 db )
         {
          
-            _db = db;
+               _db = db;
             this.dbset = _db.Set<T>();
             this.db = db;
         }
