@@ -35,7 +35,7 @@ namespace WebApplication1.Repository.Repository
 
             if (user == null)
             {
-                return new BadRequestObjectResult("User not found");
+                  return null;
             }
             var evnet = new evnet
             {
@@ -108,7 +108,10 @@ namespace WebApplication1.Repository.Repository
         {
             var user = await _db.Users.FirstOrDefaultAsync(e => e.Id == userid);
 
-
+            if (user == null)
+            {
+                return null;
+            }
 
             var evnet = new evnet
             {
@@ -170,7 +173,13 @@ namespace WebApplication1.Repository.Repository
 
         public async Task<IActionResult> AddComment(int postid, string userid ,string text)
         {
-           
+            var user = await _db.Users.FirstOrDefaultAsync(e => e.Id == userid);
+
+            if (user == null)
+            {
+                return null;
+            }
+
             var evnet = new evnet
             {  
                 taxt = text,

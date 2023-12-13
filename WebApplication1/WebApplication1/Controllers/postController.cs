@@ -152,11 +152,13 @@ namespace WebApplication1.Controllers
             {
                 return NotFound(); // Post with the given id not found
             }
-            post.totallike++;
-            await _repoemp.Addlike(id, userid);
-            post.totallike++;
+            
+            var k = await _repoemp.Addlike(id, userid);
+            if (k == null) { return NotFound(); }
             await _repoemp.save();
-            return NoContent();
+            post.totallike++;
+            
+            return Ok ();
 
         }
 
@@ -224,7 +226,8 @@ namespace WebApplication1.Controllers
                 return NotFound(); // Post with the given id not found
             }
            
-            await _repoemp.Adddislike(id, userid);
+           var k= await _repoemp.Adddislike(id, userid);
+            if (k == null) { return NotFound(); }
             post.totaldislike++;
             await _repoemp.save();
             return NoContent();
@@ -299,7 +302,8 @@ namespace WebApplication1.Controllers
                 return NoContent(); // Post with the given id not found
             }
             
-            await _repoemp.AddComment(CommentDto.postid, CommentDto.userid, CommentDto.taxt);
+           var k=  await _repoemp.AddComment(CommentDto.postid, CommentDto.userid, CommentDto.taxt);
+            if (k == null) { return NotFound(); }
             post.totalcomment++;
             await _repoemp.save();
             return NoContent();
