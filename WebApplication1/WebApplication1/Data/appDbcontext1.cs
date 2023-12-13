@@ -14,10 +14,7 @@ namespace WebApplication1.Controllers
         }
 
         public DbSet<post> posts { get; set; }
-        public DbSet<POSTSLIKES> PostLikes { get; set; }
-        public DbSet<POSTSDISLIKES> PostdisLikes { get; set; }
-        public DbSet<Comment> Comments { get; set; }
-
+        public DbSet<evnet> evnets { get; set; }
     }
 
 }

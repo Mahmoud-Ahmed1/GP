@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WebApplication1.Controllers;
 
@@ -11,9 +12,11 @@ using WebApplication1.Controllers;
 namespace WebApplication1.Migrations
 {
     [DbContext(typeof(appDbcontext1))]
-    partial class appDbcontext1ModelSnapshot : ModelSnapshot
+    [Migration("20231212235730_eventtebel")]
+    partial class eventtebel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

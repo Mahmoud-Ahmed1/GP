@@ -154,6 +154,7 @@ namespace WebApplication1.Controllers
             }
             post.totallike++;
             await _repoemp.Addlike(id, userid);
+            post.totallike++;
             await _repoemp.save();
             return NoContent();
 
@@ -166,7 +167,7 @@ namespace WebApplication1.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<post>> unlike(int postid, string usid)
+        public async Task<ActionResult<evnet>> unlike(int postid, string usid)
         {
             var existingLike = await _repoemp.GetSpecialLike(e => e.PostId == postid && e.userid == usid);
 
@@ -193,8 +194,9 @@ namespace WebApplication1.Controllers
         {
             if (id == null)
                 return BadRequest();
-            var X = await _repoemp.Getlike(e => e.PostId == id);
+           
 
+            var X = await _repoemp.Getlike(e => e.typeEvent == "like" && e.PostId == id);
 
 
             {
@@ -221,8 +223,9 @@ namespace WebApplication1.Controllers
             {
                 return NotFound(); // Post with the given id not found
             }
-            post.totaldislike++;
+           
             await _repoemp.Adddislike(id, userid);
+            post.totaldislike++;
             await _repoemp.save();
             return NoContent();
 
@@ -259,13 +262,13 @@ namespace WebApplication1.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<ActionResult<post>> Getdisliskss(int id)
+        public async Task<ActionResult<evnet>> Getdisliskss(int id)
 
         {
             if (id == null)
                 return BadRequest();
-            var X = await _repoemp.Getdislike(e => e.PostId == id);
-
+            
+            var X = await _repoemp.Getlike(e => e.typeEvent == "dislike" && e.PostId == id);
 
 
             {
@@ -293,10 +296,11 @@ namespace WebApplication1.Controllers
 
             if (post == null)
             {
-                return NotFound(); // Post with the given id not found
+                return NoContent(); // Post with the given id not found
             }
-            post.totalcomment++;
+            
             await _repoemp.AddComment(CommentDto.postid, CommentDto.userid, CommentDto.taxt);
+            post.totalcomment++;
             await _repoemp.save();
             return NoContent();
 
@@ -338,8 +342,8 @@ namespace WebApplication1.Controllers
         {
             if (id == null)
                 return BadRequest();
-            var X = await _repoemp.GetComment(e => e.PostId == id);
-
+          
+            var X = await _repoemp.Getlike(e => e.typeEvent == "comment" && e.PostId == id);
 
 
             {

@@ -31,26 +31,28 @@ namespace WebApplication1.Repository.Repository
 
         /*************************************************************************************************/
         public async Task<IActionResult> Addlike(int postid, string userid)
-        { var user = await _db.PostLikes.FirstOrDefaultAsync(e => e.userid == userid);
+        { var user = await _db.Users.FirstOrDefaultAsync(e => e.Id == userid);
 
             if (user == null)
             {
                 return new BadRequestObjectResult("User not found");
             }
-            var postLike = new POSTSLIKES
+            var evnet = new evnet
             {
                 PostId = postid,
                 userid = userid,
-                LikedDate = DateTime.UtcNow
+                eventDate = DateTime.UtcNow,
+                taxt=null,
+                 typeEvent = "like"
             };
 
-            await _db.PostLikes.AddAsync(postLike);
+            await _db.evnets.AddAsync(evnet);
             await save();
             return new NoContentResult();
         }
 
-        public async Task<List<POSTSLIKES>> Getlike(Expression<Func<POSTSLIKES, bool>> filter =null    ,bool tracked =true ) {
-        IQueryable<POSTSLIKES> query = _db.PostLikes;
+        public async Task<List<evnet>> Getlike(Expression<Func<evnet, bool>> filter =null    ,bool tracked =true ) {
+        IQueryable<evnet> query = _db.evnets;
             if(filter != null)
             {
                 query = query.Where(filter);
@@ -63,9 +65,9 @@ namespace WebApplication1.Repository.Repository
 
         }
 
-        public async Task<POSTSLIKES> GetSpecialLike(Expression<Func<POSTSLIKES, bool>> filter = null, bool tracked = true)
+        public async Task<evnet> GetSpecialLike(Expression<Func<evnet, bool>> filter = null, bool tracked = true)
         {
-            IQueryable<POSTSLIKES> query = _db.PostLikes;
+            IQueryable<evnet> query = _db.evnets;
             if (filter != null)
             {
                 query = query.Where(filter);
@@ -77,18 +79,18 @@ namespace WebApplication1.Repository.Repository
             return await query.FirstOrDefaultAsync();
 
         }
-        public async Task Removelike (POSTSLIKES entity)
+        public async Task Removelike (evnet entity)
         {
-             _db.PostLikes.Remove(entity);
+             _db.evnets.Remove(entity);
 
             await save();
         }
         
         /*************************************************************************************************/
 
-        public async Task<List<POSTSDISLIKES>> Getdislike(Expression<Func<POSTSDISLIKES, bool>> filter = null, bool tracked = true)
+        public async Task<List<evnet>> Getdislike(Expression<Func<evnet, bool>> filter = null, bool tracked = true)
         {
-            IQueryable<POSTSDISLIKES> query = _db.PostdisLikes;
+            IQueryable<evnet> query = _db.evnets;
             if (filter != null)
             {
                 query = query.Where(filter);
@@ -104,25 +106,28 @@ namespace WebApplication1.Repository.Repository
 
         public async Task<IActionResult> Adddislike(int postid, string userid)
         {
-            var user = await _db.PostdisLikes.FirstOrDefaultAsync(e => e.userid == userid);
+            var user = await _db.Users.FirstOrDefaultAsync(e => e.Id == userid);
 
-           
-            var postdislike = new POSTSDISLIKES
+
+
+            var evnet = new evnet
             {
                 PostId = postid,
                 userid = userid,
-                DISLikedDate = DateTime.UtcNow
+                eventDate = DateTime.UtcNow,
+                taxt = null,
+                typeEvent = "dislike"
             };
 
-            await _db.PostdisLikes.AddAsync(postdislike);
+            await _db.evnets.AddAsync(evnet);
             await save();
             return new NoContentResult();
         }
 
 
-        public async Task<POSTSDISLIKES> GetSpeciaDISlLike(Expression<Func<POSTSDISLIKES, bool>> filter = null, bool tracked = true)
+        public async Task<evnet> GetSpeciaDISlLike(Expression<Func<evnet, bool>> filter = null, bool tracked = true)
         {
-            IQueryable<POSTSDISLIKES> query = _db.PostdisLikes;
+            IQueryable<evnet> query = _db.evnets;
             if (filter != null)
             {
                 query = query.Where(filter);
@@ -135,9 +140,9 @@ namespace WebApplication1.Repository.Repository
 
         }
 
-        public async Task RemoveDISlike(POSTSDISLIKES entity)
+        public async Task RemoveDISlike(evnet entity)
         {
-            _db.PostdisLikes.Remove(entity);
+            _db.evnets.Remove(entity);
 
             await save();
         }
@@ -147,9 +152,9 @@ namespace WebApplication1.Repository.Repository
         /*************************************************************************************************/
 
 
-        public async Task<List<Comment>> GetComment(Expression<Func<Comment, bool>> filter = null, bool tracked = true)
+        public async Task<List<evnet>> GetComment(Expression<Func<evnet, bool>> filter = null, bool tracked = true)
         {
-            IQueryable<Comment> query = _db.Comments;
+            IQueryable<evnet> query = _db.evnets;
             if (filter != null)
             {
                 query = query.Where(filter);
@@ -166,23 +171,25 @@ namespace WebApplication1.Repository.Repository
         public async Task<IActionResult> AddComment(int postid, string userid ,string text)
         {
            
-            var Comment = new Comment
+            var evnet = new evnet
             {  
-                text = text,
+                taxt = text,
                 PostId = postid,
                 userid = userid,
-                commentDate = DateTime.UtcNow 
+                eventDate = DateTime.UtcNow,
+               
+                typeEvent = "comment"
             };
 
-            await _db.Comments.AddAsync(Comment);
+            await _db.evnets.AddAsync(evnet);
             await save();
             return new NoContentResult();
         }
 
 
-        public async Task<Comment> GetSpecialComment(Expression<Func<Comment, bool>> filter = null, bool tracked = true)
+        public async Task<evnet> GetSpecialComment(Expression<Func<evnet, bool>> filter = null, bool tracked = true)
         {
-            IQueryable<Comment> query = _db.Comments;
+            IQueryable<evnet> query = _db.evnets;
             if (filter != null)
             {
                 query = query.Where(filter);
@@ -195,9 +202,9 @@ namespace WebApplication1.Repository.Repository
 
         }
 
-        public async Task RemoveComment(Comment entity)
+        public async Task RemoveComment(evnet entity)
         {
-            _db.Comments.Remove(entity);
+            _db.evnets.Remove(entity);
 
             await save();
         }

@@ -9,33 +9,33 @@ namespace WebApplication1.Repository.Repository
     public interface IpostRepository : IRepository<post>
     {
         /*************************************************************************************************/
-       
+
 
         Task<post> updatat(post entity);
         /*************************************************************************************************/
 
-        Task<List<POSTSLIKES>>   Getlike (Expression<Func<POSTSLIKES,bool  >> filter =null, bool tracked = true);
-        Task<IActionResult> Addlike(int id ,string userid);
-        Task<POSTSLIKES> GetSpecialLike(Expression<Func<POSTSLIKES, bool>> filter = null, bool tracked = true);
-        Task Removelike(POSTSLIKES entity);
+        Task<List<evnet>> Getlike(Expression<Func<evnet, bool>> filter = null, bool tracked = true);
+        Task<IActionResult> Addlike(int id, string userid);
+        Task<evnet> GetSpecialLike(Expression<Func<evnet, bool>> filter = null, bool tracked = true);
+        Task Removelike(evnet entity);
 
 
         /*************************************************************************************************/
 
 
-        Task<List<POSTSDISLIKES>> Getdislike(Expression<Func<POSTSDISLIKES, bool>> filter = null, bool tracked = true);
+        Task<List<evnet>> Getdislike(Expression<Func<evnet, bool>> filter = null, bool tracked = true);
         Task<IActionResult> Adddislike(int id, string userid);
- 
-        Task<POSTSDISLIKES> GetSpeciaDISlLike(Expression<Func<POSTSDISLIKES, bool>> filter = null, bool tracked = true);
-        Task RemoveDISlike(POSTSDISLIKES entity);
+
+        Task<evnet> GetSpeciaDISlLike(Expression<Func<evnet, bool>> filter = null, bool tracked = true);
+        Task RemoveDISlike(evnet entity);
 
         /*************************************************************************************************/
 
-        Task<List<Comment>> GetComment(Expression<Func<Comment, bool>> filter = null, bool tracked = true);
-        Task<IActionResult> AddComment(int id, string userid,string taxt);
+        Task<List<evnet>> GetComment(Expression<Func<evnet, bool>> filter = null, bool tracked = true);
+        Task<IActionResult> AddComment(int id, string userid, string taxt);
 
-        Task<Comment> GetSpecialComment(Expression<Func<Comment, bool>> filter = null, bool tracked = true);
-        Task RemoveComment(Comment entity); 
+        Task<evnet> GetSpecialComment(Expression<Func<evnet, bool>> filter = null, bool tracked = true);
+        Task RemoveComment(evnet entity);
 
     }
 }
